@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Rating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<link rel="stylesheet" href="../stylesheets/style.css">
+
+<!-- <div class="gcse-search"></div> -->
+
+<body class="Main bg-gray-900 text-white bg-[url('../images/Home.jpg')] bg-cover bg-center h-64 w-full">
+
+    <!-- Search Bar -->
+    <div class="flex ">
+        <div class="relative flex justify-center  w-[70vw] m-auto mt-5 text-black">
+            <form id="searchForm" action="/search" method="get"
+                class="relative flex items-center w-[60vw] bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-5 py-2 transition-all duration-300 focus-within:w-[70vw] focus-within:shadow-lg">
+                <!-- Search Icon -->
+                <button type="submit"
+                    class="p-3 transition-transform transform hover:scale-110 active:scale-90 focus:outline-none">
+                    🔍
+                </button>
+
+                <!-- Input Field -->
+                <input type="text" id="searchInput" name="q" placeholder="Search for Ai model..."
+                    class="w-full bg-transparent outline-none text-white placeholder-gray-300 p-2 text-lg transition-all duration-300 focus:w-[65vw]">
+            </form>
+            <!-- Suggestions dropdown -->
+            <div id="suggestions"
+                class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 hidden z-10">
+                <ul id="suggestionsList" class="py-2"></ul>
+            </div>
+        </div>
+        <div class="flex  gap-4 mt-10 mr-10">
+            <a href="/like"><button class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                    ❤️
+                </button>
+            </a>
+            <a href="#">
+                <button class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+                    👤
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div class="p-4 bg-gray-900 min-h-screen ">
+
+        <section class="relative flex items-center justify-center h-screen bg-cover bg-center"
+            style="background-image: url('../images/Home.webp');">
+            <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-[1.2px]"></div>
+            <!-- Overlay for better readability -->
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+            <div class="relative text-center text-white max-w-3xl mx-auto">
+                <h1 class="text-4xl font-bold mb-4">Welcome Back,<%=user.name%>!</h1>
+                <p class="text-lg text-gray-300 text-xl">Discover AI models that match your needs. Start searching
+                    now!</p>
+
+                <!-- Search Bar -->
+
+
+                <!-- Popular AI Models -->
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 px-10">
+
+
+
+                    <a href="https://chatgpt.com/">
+                        <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg">
+                            <img src="../images/Chat.jpg" alt="ChatGPT"
+                                class="ml-14 h-16 w-16  rounded-full border-2 border-gray-600 object-cover">
+                            <h3 class="text-xl font-semibold">ChatGPT</h3>
+                            <p class="text-gray-200">A conversational AI model for problem solving by OpenAI.</p>
+                        </div>
+                    </a>
+                    <a href="https://gemini.google.com/app?hl=en-IN">
+                        <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg">
+                            <img src="../images/stability-ai.jpg" alt="ChatGPT"
+                                class="ml-14 h-16 w-16 rounded-full border-2 border-gray-600 object-cover">
+                            <h3 class="text-xl font-semibold">Gemini</h3>
+                            <p class="text-gray-200">An AI model for solution of any problem.</p>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg">
+                            <img src="../images/dall-ai.jpg" alt="ChatGPT"
+                                class=" ml-14 h-16 w-16 rounded-full border-2 border-gray-600 object-cover">
+                            <h3 class="text-xl font-semibold">DALL·E</h3>
+                            <p class="text-gray-200">AI that creates realistic images from text prompts.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="../javascripts/script.js"></script>
+</body>
+<script async src="https://cse.google.com/cse.js?cx=93f648795e4364d10"></script>
+
+</html>

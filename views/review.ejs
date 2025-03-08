@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review <%= model.name %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg mt-10">
+        <h2 class="text-2xl font-bold text-center mb-4">
+            📝 Write a Review for <span class="text-green-400"><%= model.name %></span>
+        </h2>
+
+       
+        <h3 class="text-xl font-bold text-white mt-8">Write a Review</h3>
+        <form action="/submit-review/<%= model._id %>" method="POST" class="mt-4">
+            <textarea name="comment" placeholder="Write your review..."
+                class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-green-400 transition-all duration-300"
+                required></textarea>
+
+            <label class="block text-white mt-4">Rating:</label>
+            <select name="rating"
+                class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-green-400">
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+
+            <button type="submit"
+                class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg text-white mt-4 w-full font-bold transition-transform transform hover:scale-105">
+                ✅ Submit Review
+            </button>
+        </form>
+    </div>
+
+    <!-- Previous Reviews -->
+    <div class="max-w-lg mx-auto mt-6 bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold mb-3">📢 Previous Reviews</h3>
+
+        <% if (model.reviews.length === 0) { %>
+            <p class="text-gray-400">No reviews yet. Be the first to review!</p>
+        <% } else { %>
+            <% model.reviews.forEach(review => { %>
+                <div class="border-b border-gray-700 pb-3 mb-3">
+                    <p class="font-semibold text-green-300">👤 <%= review.user %></p>
+                    <p class="text-yellow-400">⭐ <%= review.rating %>/5</p>
+                    <p class="text-gray-300"><%= review.comment %></p>
+                    <small class="text-gray-500"><%= review.date.toDateString() %></small>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+
+</body>
+</html>

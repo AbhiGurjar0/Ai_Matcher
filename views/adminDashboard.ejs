@@ -1,0 +1,208 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-1/5 bg-black min-h-screen p-4">
+            <h2 class="text-white text-xl font-bold mb-6">Admin Panel</h2>
+            <ul>
+                <li class="mb-4">
+                    <a href="#" class="text-white flex items-center hover:bg-gray-700 p-2 rounded"
+                        onclick="showContent('dashboard')">
+                        <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+                    </a>
+                </li>
+               
+                <li class="mb-4">
+                    <a href="#" class="text-white flex items-center hover:bg-gray-700 p-2 rounded"
+                        onclick="showContent('users')">
+                        <i class="fas fa-users mr-2"></i> Users
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="text-white flex items-center hover:bg-gray-700 p-2 rounded"
+                        onclick="showContent('settings')">
+                        <i class="fas fa-cog mr-2"></i> Settings
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="text-white flex items-center hover:bg-gray-700 p-2 rounded"
+                        onclick="showContent('allModels')">
+                        <i class="fas fa-th-list mr-2"></i> All Models
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div class="w-4/5 p-6">
+
+            <div id="content">
+                <!-- Default Content -->
+                <h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="text-lg font-semibold">Total Users</h3>
+                        <p class="text-2xl font-bold">2</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(section) {
+            const content = document.getElementById('content');
+            let html = '';
+
+            switch (section) {
+                case 'dashboard':
+                    html = `
+                        <h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded shadow">
+                                <h3 class="text-lg font-semibold">Total Users</h3>
+                                <p class="text-2xl font-bold">2</p>
+                            </div>
+                            
+                        </div>
+                    `;
+                    break;
+
+
+                case 'users':
+                    html = `
+                        <div id="users" class="content">
+                        <section class="p-6 bg-gray-100">
+                            <h2 class="text-2xl font-bold mb-4">Users Management</h2>
+                            <div class="bg-white shadow rounded-lg p-4">
+                                <table class="w-full text-sm text-left border border-gray-200">
+                                    <thead class="bg-gray-200">
+                                        <tr>
+                                            <th class="hidden md:inline-block px-4 py-2">User ID</th>
+                                            <th class="px-4 py-2">Name</th>
+                                            <th class="px-4 py-2">Email</th>
+                                            <th class="hidden md:inline-block px-4 py-2">Status</th>
+                                            <th class="px-4 py-2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if(user.length>0){%>
+                                            <%user.slice().reverse().forEach(function(usr){%>
+                                                <tr class="border-b">
+                                                    <td class="hidden md:inline-block  px-4 py-2">
+                                                        <%=usr._id%>
+                                                    </td>
+                                                    <td class="px-4 py-2">
+                                                        <%=usr.fullname%>
+                                                    </td>
+                                                    <td class="px-4 py-2">
+                                                        <%=usr.email%>
+                                                    </td>
+                                                    <td class="hidden md:inline-block px-4 py-2">
+                                                        <%=usr.role%>
+                                                    </td>
+                                                    <td
+                                                        class="hidden md:inline-block px-4 py-2 text-green-500 font-semibold">
+                                                        Active</td>
+                                                    <td class="px-4 py-2">
+                                                        <a href="#"
+                                                            class="text-blue-500 hover:text-blue-700">View</a>
+
+
+
+                                                    </td>
+                                                </tr>
+                                                <%})%>
+                                                    <%} else{ %>
+                                                        <h1>No users. </h1>
+                                                        <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                    `;
+                    break;
+                case 'settings':
+                    html = `
+                        <h2 class="text-2xl font-bold mb-4">Settings</h2>
+                        <p>Here you can change settings.</p>
+                    `;
+                    break;
+                case 'allModels':
+                    html = `
+
+
+
+    <div class="products w-[100%] min-h-[40vh] md:w-[72%] md:h-min-[60vh] flex flex-wrap gap-2 my-2 ">
+        <div class="flex flex-col gap-10">
+
+
+            <%if(models.length>0){%>
+                <% models.forEach(product=> { %>
+                    <a href="/details/<%=product._id%>">
+                        <div class="flex items-center bg-gray-800 rounded-xl p-4 shadow-lg  w-[70vw] m-auto">
+                            <!-- Left: AI Image -->
+                        
+
+                            <!-- Right: AI Details -->
+                            <div class="ml-4 text-white flex-1">
+                                
+                                <h2 class="text-xl font-bold"><%=product.name%></h2>
+                                <p class="text-gray-400 text-sm"><%=product.description%></p>
+
+                                <div class="flex items-center mt-2">
+                                    <span class="text-yellow-400 text-lg">⭐
+                                        <%=product.rating%></span>
+                                    <span class="ml-4 text-green-400 text-sm">Accuracy:<%=product.rating*20%>%</span>
+                                </div>
+
+                                <!-- Like & Dislike Buttons -->
+                                
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </a>
+                    <% }); %>
+                        <% } %>
+        </div>
+    </div>
+
+
+                    `;
+                    break;
+                default:
+                    html = `
+                        <h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded shadow">
+                                <h3 class="text-lg font-semibold">Total Users</h3>
+                                <p class="text-2xl font-bold">2</p>
+                            </div>
+                            <div class="bg-white p-4 rounded shadow">
+                                <h3 class="text-lg font-semibold">Total Orders</h3>
+                                <p class="text-2xl font-bold">0</p>
+                            </div>
+                            <div class="bg-white p-4 rounded shadow">
+                                <h3 class="text-lg font-semibold">Total Revenue</h3>
+                                <p class="text-2xl font-bold">$92,340</p>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            content.innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

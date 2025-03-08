@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Rating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white">
+
+    <!-- Search Bar -->
+    <div class="p-4 bg-gray-900 min-h-screen ">
+        <div class="relative w-full">
+            <input type="text" id="searchInput" placeholder="Search AI Models..."
+                class="w-full p-2 rounded-lg bg-gray-800 text-white focus:outline-none mb-6"
+                onkeyup="showSuggestions()">
+            <button onclick="performSearch()"
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-1 bg-blue-600 rounded-lg">
+                🔍
+            </button>
+            <!-- Suggestions Box -->
+            <ul id="suggestions" class="absolute w-full bg-gray-800 text-white mt-1 rounded-lg shadow-lg hidden"></ul>
+        </div>
+        <div class="space-y-4">
+            <!-- AI Model Card -->
+            <div class="flex items-center bg-gray-800 rounded-xl p-4 shadow-lg w-[70vw] m-auto">
+                <!-- Left: AI Image -->
+                <img src="../images/Chat.jpg" alt="ChatGPT"
+                    class="w-24 h-24 rounded-full border-2 border-gray-600 object-cover">
+
+                <!-- Right: AI Details -->
+                <div class="ml-4 text-white flex-1">
+                    <h2 class="text-xl font-bold">ChatGPT</h2>
+                    <p class="text-gray-400 text-sm">An AI chatbot developed by OpenAI for natural conversations.</p>
+
+                    <div class="flex items-center mt-2">
+                        <span class="text-yellow-400 text-lg">⭐ 4.9</span>
+                        <span class="ml-4 text-green-400 text-sm">Accuracy: 95%</span>
+                    </div>
+
+                    <!-- Like & Dislike Buttons -->
+                    <div class="mt-2 flex items-center space-x-4">
+                        <button class="bg-green-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👍 <span>Like</span>
+                        </button>
+                        <button class="bg-red-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👎 <span>Dislike</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second AI Model -->
+            <div class="flex items-center bg-gray-800 rounded-xl p-4 shadow-lg  w-[70vw] m-auto">
+                <!-- Left: AI Image -->
+                <img src="../images/Chat.jpg" alt="Gemini"
+                    class="w-24 h-24 rounded-full border-2 border-gray-600 object-cover">
+
+                <!-- Right: AI Details -->
+                <div class="ml-4 text-white flex-1">
+                    <h2 class="text-xl font-bold">Gemini</h2>
+                    <p class="text-gray-400 text-sm">A powerful AI model developed by Google DeepMind.</p>
+
+                    <div class="flex items-center mt-2">
+                        <span class="text-yellow-400 text-lg">⭐ 4.7</span>
+                        <span class="ml-4 text-green-400 text-sm">Accuracy: 92%</span>
+                    </div>
+
+                    <!-- Like & Dislike Buttons -->
+                    <div class="mt-2 flex items-center space-x-4">
+                        <button class="bg-green-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👍 <span>Like</span>
+                        </button>
+                        <button class="bg-red-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👎 <span>Dislike</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center bg-gray-800 rounded-xl p-4 shadow-lg  w-[70vw] m-auto">
+                <!-- Left: AI Image -->
+                <img src="../images/Chat.jpg" alt="Gemini"
+                    class="w-24 h-24 rounded-full border-2 border-gray-600 object-cover">
+
+                <!-- Right: AI Details -->
+                <div class="ml-4 text-white flex-1">
+                    <h2 class="text-xl font-bold">Gemini</h2>
+                    <p class="text-gray-400 text-sm">A powerful AI model developed by Google DeepMind.</p>
+
+                    <div class="flex items-center mt-2">
+                        <span class="text-yellow-400 text-lg">⭐ 4.7</span>
+                        <span class="ml-4 text-green-400 text-sm">Accuracy: 92%</span>
+                    </div>
+
+                    <!-- Like & Dislike Buttons -->
+                    <div class="mt-2 flex items-center space-x-4">
+                        <button class="bg-green-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👍 <span>Like</span>
+                        </button>
+                        <button class="bg-red-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👎 <span>Dislike</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center bg-gray-800 rounded-xl p-4 shadow-lg  w-[70vw] m-auto">
+                <!-- Left: AI Image -->
+                <img src="../images/Chat.jpg" alt="Gemini"
+                    class="w-24 h-24 rounded-full border-2 border-gray-600 object-cover">
+
+                <!-- Right: AI Details -->
+                <div class="ml-4 text-white flex-1">
+                    <h2 class="text-xl font-bold">Gemini</h2>
+                    <p class="text-gray-400 text-sm">A powerful AI model developed by Google DeepMind.</p>
+
+                    <div class="flex items-center mt-2">
+                        <span class="text-yellow-400 text-lg">⭐ 4.7</span>
+                        <span class="ml-4 text-green-400 text-sm">Accuracy: 92%</span>
+                    </div>
+
+                    <!-- Like & Dislike Buttons -->
+                    <div class="mt-2 flex items-center space-x-4">
+                        <button class="bg-green-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👍 <span>Like</span>
+                        </button>
+                        <button class="bg-red-600 px-3 py-1 rounded-lg flex items-center space-x-1">
+                            👎 <span>Dislike</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const models = ["ChatGPT", "Gemini", "Claude"];
+        const searchInput = document.getElementById("searchInput");
+        const suggestionsBox = document.getElementById("suggestions");
+        const modelsContainer = document.getElementById("modelsContainer");
+
+        function showSuggestions() {
+            const query = searchInput.value.toLowerCase();
+            suggestionsBox.innerHTML = "";
+            if (query === "") {
+                suggestionsBox.classList.add("hidden");
+                return;
+            }
+            const filtered = models.filter(model => model.toLowerCase().includes(query));
+            if (filtered.length === 0) {
+                suggestionsBox.classList.add("hidden");
+                return;
+            }
+            suggestionsBox.classList.remove("hidden");
+            filtered.forEach(model => {
+                const li = document.createElement("li");
+                li.className = "p-2 hover:bg-gray-700 cursor-pointer";
+                li.innerText = model;
+                li.onclick = () => {
+                    searchInput.value = model;
+                    suggestionsBox.classList.add("hidden");
+                    performSearch();
+                };
+                suggestionsBox.appendChild(li);
+            });
+        }
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase();
+            document.querySelectorAll(".ai-model").forEach(card => {
+                const name = card.getAttribute("data-name").toLowerCase();
+                card.style.display = name.includes(query) ? "flex" : "none";
+            });
+        }
+
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("#suggestions") && event.target !== searchInput) {
+                suggestionsBox.classList.add("hidden");
+            }
+        });
+    </script>
+</body>
+
+</html>

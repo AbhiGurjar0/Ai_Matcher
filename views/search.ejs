@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Rating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+
+
+<body class="bg-gray-900 text-white">
+    <!-- Search Bar -->
+    <!-- <div class="flex  mt-5">
+        
+    </div> -->
+
+    <div class="relative flex justify-center  w-[70vw] m-auto mt-5 text-black">
+        <form id="searchForm" action="/search" method="get"
+            class="relative flex items-center w-[60vw] bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-5 py-2 transition-all duration-300 focus-within:w-[70vw] focus-within:shadow-lg">
+            <!-- Search Icon -->
+            <button type="submit"
+                class="p-3 transition-transform transform hover:scale-110 active:scale-90 focus:outline-none">
+                🔍
+            </button>
+
+            <!-- Input Field -->
+            <input type="text" id="searchInput" name="q" placeholder="Search products..."
+                class="w-full bg-transparent outline-none text-white placeholder-gray-300 p-2 text-lg transition-all duration-300 focus:w-[65vw]">
+        </form>
+        <!-- Suggestions dropdown -->
+        <div id="suggestions"
+            class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 hidden z-10">
+            <ul id="suggestionsList" class="py-2"></ul>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- Product List -->
+    <div class="products w-full md:w-[72%] flex flex-wrap gap-2 my-6 mx-auto">
+        <% if(data.length> 0) { %>
+            <% data.forEach(product=> { %>
+                <!-- <a href="/product/<%= product._id %>" class="block w-full"> -->
+                <div
+                    class="flex items-center bg-gray-800 rounded-xl p-4 shadow-lg w-[70vw] mx-auto transition duration-300 transform hover:scale-105 hover:shadow-2xl h-[10vw]">
+                    <!-- Image -->
+
+
+                    <!-- Details -->
+                    <div class="ml-4 flex gap-5 w-[60vw]">
+
+                        <div>
+                            <h2 class="text-xl font-bold">
+                                <%= product.title %>
+                            </h2>
+                            <p class="text-gray-400 text-sm">
+                                <%= product.snippet%>
+                            </p>
+                            <!-- <p class="py-[1px] px-2 text-sm capitalize bg-zinc-100 rounded-xl inline-block text-black">
+                                <%=product.category%>
+                            </p> -->
+                        </div>
+
+                        <!-- Rating -->
+                        <!-- <div class="flex flex-col items-center mt-2 w-[10vw]">
+                            <span class="text-yellow-400 text-lg"> -->
+                                <div class="flex items-center mt-2">
+                                    <span class="text-yellow-400 text-lg">
+                                        4.5/5⭐
+                                    </span>
+                                    <span class="ml-4 text-green-400 text-sm">Accuracy:90%</span>
+                                </div>
+
+
+                          
+
+
+
+                        <!-- Like & Dislike Buttons -->
+                        <div class="mt-2 flex items-center space-x-4">
+                            <form action="/like" method="POST">
+                                <input type="hidden" name="title" value="<%= product.title || '' %>">
+                                <input type="hidden" name="description" value="<%= product.snippet || '' %>">
+                                <input type="hidden" name="link" value="<%= product.formattedUrl || '' %>">
+                                <button id="likeBtn"
+                                    class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg flex items-center space-x-1 transition-transform transform hover:scale-105"
+                                    type="submit">
+                                    👍 <span>Like</span>
+                                </button>
+                            </form>
+
+                            <button id="dislikeBtn"
+                                class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg flex items-center space-x-1 transition-transform transform hover:scale-105">
+                                👎 <span>Dislike</span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- </a> -->
+                <% }); %>
+                    <% } else { %>
+                        <p class="text-center text-gray-400 w-full">No products found matching "<%= query %>".</p>
+                        <% } %>
+    </div>
+    <script src="../javascripts/script.js"></script>
+</body>
+
+</html>

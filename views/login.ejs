@@ -1,0 +1,181 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login & Sign Up - Design Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #131313;
+        }
+        .form-container {
+            background-color: #2e333d;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        .form-container.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .form-container.hide {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        .btn {
+            transition: background-color 0.2s ease;
+        }
+        .btn:active {
+            animation: bounce 0.3s;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: scale(1);
+            }
+            40% {
+                transform: scale(1.1);
+            }
+            60% {
+                transform: scale(0.95);
+            }
+        }
+        .btn-switch {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-switch::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            transition: transform 0.5s ease;
+        }
+        .btn-switch:active::before {
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 0.5s ease;
+        }
+        .click-effect {
+            animation: clickEffect 0.5s forwards;
+        }
+        @keyframes clickEffect {
+            0% {
+                background-color: #6d8afd;
+                transform: scale(1);
+            }
+            50% {
+                background-color: #4b6cb7;
+                transform: scale(1.1);
+            }
+            100% {
+                background-color: #6d8afd;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen relative">
+    <% if (error.length> 0) { %>
+        <div
+            class="fixed top-4 left-1/2 transform -translate-x-1/2 p-3 rounded-md bg-red-500 z-50 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+            <span class="inline-block text-white text-center">
+                <%= error %>
+            </span>
+        </div>
+        <% } %>
+    <div class="form-container show" id="loginFormContainer">
+        <h2 class="text-2xl font-semibold text-center text-white">Welcome Back</h2>
+        <p class="text-gray-400 text-center mb-6">Please login to your account</p>
+        <form id="loginForm"  method="post" action="/users/login">
+            <div class="mb-4 text-white">Email</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Enter your Email" name="email" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-300 text-sm font-bold mb-2" for="password">Password</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password" required name="password">
+            </div>
+            <div class="flex items-center justify-between mb-4">
+                <label class="inline-flex items-center">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 " />
+                    <span class="ml-2 text-gray-300">Remember Me</span>
+                </label>
+                <a class="text-sm text-blue-600 hover:text-blue-800" href="#">Forgot Password?</a>
+            </div>
+            <button class="bg-[#6d8afd] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full btn btn-switch" type="submit">
+                Login
+            </button>
+        </form>
+        <p class="text-center text-gray-400 text-sm mt-4">
+            Don't have an account? <a class="text-[#6d8afd] hover:text-blue-800 cursor-pointer" id="toSignUp">Sign Up</a>
+        </p>
+    </div>
+
+    <div class="form-container" id="signUpFormContainer">
+        <h2 class="text-2xl font-semibold text-center text-white">Create an Account</h2>
+        <p class="text-gray-400 text-center mb-6">Join us today!</p>
+        <form id="signUpForm" method="post" action="/users/register">
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-bold mb-2" for="newUsername">Username</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newUsername" type="text" placeholder="Choose a username" required name="name">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-300 text-sm font-bold mb-2" for="email">Email</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Enter your email" required name="email">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-300 text-sm font-bold mb-2" for="newPassword">Password</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newPassword" type="password" placeholder="Create a password" required name="password">
+            </div>
+            <button class="bg-[#6d8afd] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full btn btn-switch" type="submit">
+                Sign Up
+            </button>
+        </form>
+        <p class="text-center text-gray-400 text-sm mt-4">
+            Already have an account? <a class="text-[#6d8afd] hover:text-blue-800 cursor-pointer" id="toLogin">Login</a>
+        </p>
+    </div>
+
+    <script>
+        // Function to switch forms with slide effect
+        function switchForms(showFormId, hideFormId) {
+            const showForm = document.getElementById(showFormId);
+            const hideForm = document.getElementById(hideFormId);
+            hideForm.classList.add('hide');
+            setTimeout(() => {
+                hideForm.classList.remove('show', 'hide');
+                showForm.classList.add('show');
+            }, 500); // Duration of the slide-out
+        }
+
+        // Event listeners for switching forms
+        document.getElementById('toSignUp').addEventListener('click', function() {
+            switchForms('signUpFormContainer', 'loginFormContainer');
+            this.classList.add('click-effect');
+            setTimeout(() => {
+                this.classList.remove('click-effect');
+            }, 500);
+        });
+
+        document.getElementById('toLogin').addEventListener('click', function() {
+            switchForms('loginFormContainer', 'signUpFormContainer');
+            this.classList.add('click-effect');
+            setTimeout(() => {
+                this.classList.remove('click-effect');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
